@@ -68,6 +68,10 @@ Alpa-FTS extends Alpa with a fault tolerance system designed to handle GPU failu
 4. Compare the completion times, success rates, and effective throughput between the runs
 5. Review the detailed recovery metrics in the `{exp-name}_fts_summary.txt` file
 
+
+original Alpa:
+# Alpa: Automating Inter- and Intra-Operator Parallelism for Distributed Deep Learning
+
 Alpa is a system for training and serving large-scale neural networks.
 
 Scaling neural networks to hundreds of billions of parameters has enabled dramatic breakthroughs such as GPT-3, but training and serving these large-scale neural networks require complicated distributed system techniques.
