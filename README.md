@@ -25,15 +25,6 @@ Alpa-FTS extends Alpa with a fault tolerance system designed to handle GPU failu
 - **Checkpointing System**: Provides configurable checkpointing to minimize work loss
 - **Performance Metrics**: Tracks fault tolerance overhead and recovery statistics
 
-## Demo
-
-The `fts_demo.py` script provides a simple demonstration of Alpa-FTS capabilities:
-```bash
-python fts_demo.py
-```
-
-This demo simulates a GPT-like model training session with a GPU failure, demonstrating the automatic recovery process.
-
 ## Evaluation Instructions
 
 ### Setup
