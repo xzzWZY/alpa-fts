@@ -11,6 +11,74 @@
 
 [**Documentation**](https://alpa-projects.github.io) | [**Slack**](https://forms.gle/YEZTCrtZD6EAVNBQ7)
 
+new README of Alpa-FTS:
+Here's a brief README section to add to the top of the original README for Alpa-FTS:
+
+```markdown
+# Alpa-FTS: Fault-Tolerant Training for Large-Scale Neural Networks
+
+Alpa-FTS extends Alpa with a fault tolerance system designed to handle GPU failures during large-scale distributed training. This extension is particularly valuable for cloud environments where hardware failures are common, and for long-running training jobs where recovery capabilities are essential.
+
+## Key Features
+
+- **Automatic Failure Detection**: Monitors GPU health and detects failures in real-time
+- **Precomputed Recovery Plans**: Generates optimized partition plans for different failure scenarios
+- **Seamless Recovery**: Recovers from GPU failures with minimal training disruption
+- **Checkpointing System**: Provides configurable checkpointing to minimize work loss
+- **Performance Metrics**: Tracks fault tolerance overhead and recovery statistics
+
+## Demo
+
+The `fts_demo.py` script provides a simple demonstration of Alpa-FTS capabilities:
+```bash
+python fts_demo.py
+```
+
+This demo simulates a GPT-like model training session with a GPU failure, demonstrating the automatic recovery process.
+
+## Evaluation Instructions
+
+### Setup
+
+1. Follow [Alpa's installation instructions](https://alpa-projects.github.io/install.html) to set up the Alpa environment
+2. Install additional dependencies for Alpa-FTS:
+   ```bash
+   pip install psutil
+   ```
+
+### Evaluating Partition Plan Search Overhead
+
+1. Navigate to the benchmark directory:
+   ```bash
+   cd benchmark
+   ```
+2. Run the benchmark with fault tolerance enabled:
+   ```bash
+   python benchmark_fts.py --suite gpt.perf_test_auto --niter 5 --exp-name fts_overhead --enable-fts
+   ```
+3. Compare with baseline performance:
+   ```bash
+   python benchmark.py --suite gpt.perf_test_auto --niter 5 --exp-name baseline
+   ```
+4. The partition planning overhead is reported in the `{exp-name}_fts_stats.tsv` file
+
+### Evaluating Training Efficiency During Failures
+
+1. Start the GPU failure simulator (adjust intervals as needed):
+   ```bash
+   ./periodical_failure.sh 600 1800 &  # Simulate failures every 10-30 minutes
+   ```
+2. Run a long-running benchmark with fault tolerance:
+   ```bash
+   python benchmark_fts.py --suite gpt.perf_test_auto --niter 100 --exp-name fts_recovery --enable-fts --checkpoint-interval 5
+   ```
+3. Run the same benchmark without fault tolerance for comparison:
+   ```bash
+   python benchmark.py --suite gpt.perf_test_auto --niter 100 --exp-name baseline_failures
+   ```
+4. Compare the completion times, success rates, and effective throughput between the runs
+5. Review the detailed recovery metrics in the `{exp-name}_fts_summary.txt` file
+
 Alpa is a system for training and serving large-scale neural networks.
 
 Scaling neural networks to hundreds of billions of parameters has enabled dramatic breakthroughs such as GPT-3, but training and serving these large-scale neural networks require complicated distributed system techniques.
