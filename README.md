@@ -12,9 +12,7 @@
 [**Documentation**](https://alpa-projects.github.io) | [**Slack**](https://forms.gle/YEZTCrtZD6EAVNBQ7)
 
 new README of Alpa-FTS:
-Here's a brief README section to add to the top of the original README for Alpa-FTS:
 
-```markdown
 # Alpa-FTS: Fault-Tolerant Training for Large-Scale Neural Networks
 
 Alpa-FTS extends Alpa with a fault tolerance system designed to handle GPU failures during large-scale distributed training. This extension is particularly valuable for cloud environments where hardware failures are common, and for long-running training jobs where recovery capabilities are essential.
